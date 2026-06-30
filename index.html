@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANANA Influencer — Talent Roster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b; --bg2:#0f0f11; --card:#161618; --ink:#f5f5f7; --muted:#9a9aa3;
+    --line:#262629; --accent:#ffd400; --accent-ink:#0f1115;
+    --ig:#ff5c8d; --tt:#ffffff; --yt:#ff4040; --fb:#4d94ff; --x:#ffffff;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 30px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter','Noto Sans Thai',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+    radial-gradient(900px 500px at 50% -8%,rgba(255,212,0,.10),transparent 60%),
+    radial-gradient(700px 500px at 100% 0,rgba(120,90,255,.07),transparent 55%);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  header.hero{padding:66px 24px 36px;text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:#161618;border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--muted)}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+  h1{font-size:clamp(40px,6vw,70px);font-weight:800;letter-spacing:-.03em;margin:22px 0 12px;line-height:1.02}
+  h1 .y{color:#111;background:linear-gradient(180deg,#ffe14d,#ffce00);padding:0 .12em;border-radius:12px}
+  .sub{color:var(--muted);font-size:18px;max-width:560px;margin:0 auto;font-weight:500}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:780px;margin:38px auto 0}
+  .stat{background:linear-gradient(180deg,#161618,#121214);border:1px solid var(--line);border-radius:18px;padding:22px 18px}
+  .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;background:linear-gradient(180deg,#fff,#cfcfd6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat .l{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding:44px 0 40px}
+  .card{position:relative;background:linear-gradient(180deg,#161618,#131315);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);transition:transform .18s,border-color .18s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:#3a3a40}
+  .rank{position:absolute;top:16px;right:16px;background:#1d1d20;border:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700;min-width:24px;height:24px;padding:0 7px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+  .rank.top{background:var(--accent);color:#111;border-color:var(--accent)}
+  .top{display:flex;align-items:center;gap:14px}
+  .ava{position:relative;width:58px;height:58px;border-radius:50%;flex:0 0 auto;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:21px;color:#fff;letter-spacing:-.02em;box-shadow:0 0 0 2px rgba(255,255,255,.06)}
+  .ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .who{min-width:0;flex:1}
+  .name{font-weight:700;font-size:17px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .handle{color:var(--muted);font-size:13.5px;font-weight:500}
+  .cat{font-size:11.5px;font-weight:600;color:#ffe07a;background:rgba(255,212,0,.10);border:1px solid rgba(255,212,0,.25);padding:3px 10px;border-radius:999px;white-space:nowrap;margin-right:30px}
+
+  .reach{margin:18px 0 14px;padding:14px;background:linear-gradient(180deg,rgba(255,212,0,.06),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:14px;text-align:center}
+  .reach .big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .reach .lab{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+
+  .plats{display:flex;flex-direction:column;gap:7px;margin-top:auto}
+  .pl{display:flex;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--line);border-radius:11px;padding:9px 12px;color:var(--ink);transition:.15s;background:#121214}
+  .pl:hover{border-color:#3d3d44;background:#17171a}
+  .pl .ic{width:18px;height:18px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+  .pl .ic svg{width:18px;height:18px}
+  .pl .pn{font-size:13px;font-weight:600;flex:1;color:#d6d6dd}
+  .pl .pv{font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .pl .pv.dim{color:var(--muted);font-weight:600;font-size:12.5px}
+  .pl.ig .ic{color:var(--ig)} .pl.tt .ic{color:var(--tt)} .pl.yt .ic{color:var(--yt)} .pl.fb .ic{color:var(--fb)} .pl.x .ic{color:var(--x)}
+  .arrow{color:#55555c;font-size:13px}
+
+  footer{text-align:center;padding:36px 24px 60px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);margin-top:10px}
+  footer b{color:var(--ink)}
+  .note{max-width:740px;margin:0 auto;background:#121214;border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--muted);font-size:13px;text-align:center}
+
+  @media(max-width:640px){.stats{grid-template-columns:1fr;max-width:340px}header.hero{padding:46px 18px 28px}}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="badge"><span class="dot"></span>Banana Record · Talent Roster 2026</div>
+    <h1><span class="y">BANANA</span> Influencer</h1>
+    <p class="sub">รวมศิลปินและอินฟลูเอนเซอร์ในการดูแลของ Banana Record</p>
+    <div class="stats">
+      <div class="stat"><div class="n" id="s-artists">14</div><div class="l">ศิลปินในสังกัด</div></div>
+      <div class="stat"><div class="n" id="s-reach">—</div><div class="l">Total Reach (ทุกช่องทาง)</div></div>
+      <div class="stat"><div class="n" id="s-top">4.2M</div><div class="l">Top Single Channel</div></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+    <div class="note">ยอดผู้ติดตาม Instagram · TikTok · YouTube · Facebook ตรวจสอบจากหน้าโปรไฟล์จริง (ณ มิ.ย. 2026) · Total Reach = ผลรวมผู้ติดตามทุกช่องทาง</div>
+  </div>
+
+  <footer>
+    <b>BANANA Influencer</b> — Managed by Banana Record<br>
+    ข้อมูล ณ เดือนมิถุนายน 2026
+  </footer>
+
+<script>
+const I = {
+  ig:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.86s0 3.6-.07 4.86c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.63 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.86c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2Zm0 1.95c-3.15 0-3.52.01-4.76.07-.9.04-1.39.2-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.6-.07 4.76s.01 3.52.07 4.76c.04.9.2 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.9-.04 1.39-.2 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.76s-.01-3.52-.07-4.76c-.04-.9-.2-1.39-.32-1.71a2.86 2.86 0 0 0-.69-1.06 2.86 2.86 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.76-.07Zm0 3.32a4.53 4.53 0 1 1 0 9.06 4.53 4.53 0 0 1 0-9.06Zm0 7.47a2.94 2.94 0 1 0 0-5.88 2.94 2.94 0 0 0 0 5.88Zm5.77-7.69a1.06 1.06 0 1 1-2.12 0 1.06 1.06 0 0 1 2.12 0Z"/></svg>',
+  tt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.2 1.5 3.5 3.6 3.6v2.5c-1.2.1-2.3-.3-3.6-1v6.3c0 3.9-2.8 6.3-6.1 5.9-3-.4-4.8-3.2-4-6.2.6-2.2 2.6-3.7 5-3.5v2.6c-.4-.1-.8-.1-1.2 0-1.1.2-1.8 1-1.7 2.1.1 1.1 1 1.9 2.1 1.8 1.2-.1 1.9-1 1.9-2.4V3h2.5Z"/></svg>',
+  yt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 4.9 12 4.9 12 4.9s-7 0-8.9.5A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5ZM9.8 15.3V8.7l5.7 3.3-5.7 3.3Z"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.1h-6.6l-5.2-6.8-6 6.8H1.1l7.7-8.8L.7 2.3h6.8l4.7 6.2 5-6.2Zm-1.2 17.5h1.8L7.1 4.1H5.2l11.8 15.7Z"/></svg>'
+};
+const PNAME={ig:'Instagram',tt:'TikTok',yt:'YouTube',fb:'Facebook',x:'X (Twitter)'};
+function fmt(n){ if(n==null) return null; if(n>=1e6) return (n/1e6).toFixed(n>=1e7?1:2).replace(/\.?0+$/,'')+'M'; if(n>=1e3) return (n/1e3).toFixed(n>=1e4?0:1).replace(/\.0$/,'')+'K'; return ''+n; }
+
+const DATA = [
+  {name:'BANGKOKBOY', handle:'bangkokboy.du7', cat:'Actor', c:'#5b8def', p:[
+    ['tt','https://www.tiktok.com/@bangkokboykub',4200000],
+    ['ig','https://www.instagram.com/bangkokboy.du7/',694000],
+    ['yt','https://www.youtube.com/@oppahong',470000],
+    ['fb','https://www.facebook.com/hong2dope/',100000],
+    ['x','https://x.com/bangkokboykub',null]]},
+  {name:'Joke iScream', handle:'jokeiscream', cat:'Comedian', c:'#f59e0b', p:[
+    ['fb','https://www.facebook.com/JokeIScream/',950000],
+    ['tt','https://www.tiktok.com/@jokeiscream',730500],
+    ['ig','https://www.instagram.com/jokeiscream/',339000],
+    ['yt','https://www.youtube.com/@jokeiscream',171000]]},
+  {name:'Chaba', handle:'chaba_bie', cat:'Artist', c:'#14b8a6', p:[
+    ['tt','https://www.tiktok.com/@chaba_bie',1100000],
+    ['ig','https://www.instagram.com/chaba_bie/',51200]]},
+  {name:'YUME', handle:'yumeluvu', cat:'Creator', c:'#ec4899', p:[
+    ['tt','https://www.tiktok.com/@yumikikikiki',375400],
+    ['ig','https://www.instagram.com/yumeluvu/',67400]]},
+  {name:'Yoohajung · 유하정', handle:'februaryuha', cat:'Musician', c:'#6366f1', p:[
+    ['tt','https://www.tiktok.com/@yoohajung',147400],
+    ['ig','https://www.instagram.com/februaryuha/',18000],
+    ['yt','https://www.youtube.com/@yoohajung',37400]]},
+  {name:'อ้อมฟางร์ · พัชรี', handle:'nufang_5454', cat:'Singer', c:'#d946ef', p:[
+    ['tt','https://www.tiktok.com/@om_fang',181800],
+    ['ig','https://www.instagram.com/nufang_5454/',8223]]},
+  {name:'COWBOY', handle:'cowboycopyshow', cat:'Performer', c:'#a16207', p:[
+    ['fb','https://www.facebook.com/Cowboy.Fanpage/',170000],
+    ['ig','https://www.instagram.com/cowboycopyshow/',7482]]},
+  {name:'Mahnmook', handle:'mahnmoo_k', cat:'Artist', c:'#ef4444', p:[
+    ['tt','https://www.tiktok.com/@mahnmoo_k',65100],
+    ['ig','https://www.instagram.com/mahnmoo_k/',55000]]},
+  {name:'FRESHY QVINT', handle:'freshyniracha', cat:'Actor', c:'#10b981', p:[
+    ['tt','https://www.tiktok.com/@freshyniracha',81200],
+    ['ig','https://www.instagram.com/freshyniracha/',6974]]},
+  {name:'Banthita Suntayarom', handle:'tita.banthita', cat:'Artist', c:'#8b5cf6', p:[
+    ['tt','https://www.tiktok.com/@tita.banthita',59200],
+    ['ig','https://www.instagram.com/tita.banthita/',24300],
+    ['fb','https://www.facebook.com/tita.banthita',null],
+    ['yt','https://www.youtube.com/@tita.banthita',null]]},
+  {name:'Wassakorn · ESKIMO', handle:'eskimoproject', cat:'Artist', c:'#f97316', p:[
+    ['fb','https://www.facebook.com/eskimoproject',25000],
+    ['ig','https://www.instagram.com/eskimoproject/',5335],
+    ['tt','https://www.tiktok.com/@eskimoproject',1997]]},
+  {name:'AMP QVINT', handle:'imdwvamp', cat:'Creator', c:'#e11d48', p:[
+    ['tt','https://www.tiktok.com/@smilingamp',11100],
+    ['ig','https://www.instagram.com/imdwvamp/',3472]]},
+  {name:'HONGYING QVINT', handle:'hongyngllee', cat:'Creator', c:'#0891b2', p:[
+    ['tt','https://www.tiktok.com/@hongyngllee',10900],
+    ['ig','https://www.instagram.com/hongyngllee/',2885]]},
+  {name:'YENA', handle:'4ik0o_ii', cat:'Creator', c:'#0ea5e9', p:[
+    ['ig','https://www.instagram.com/4ik0o_ii/',12300]]}
+];
+
+function initials(s){ const t=s.replace(/[·.].*$/,'').trim(); const p=t.split(/\s+/); return ((p[0]||'')[0]||'')+((p[1]||'')[0]||''); }
+function total(d){ return d.p.reduce((a,x)=>a+(x[2]||0),0); }
+DATA.sort((a,b)=>total(b)-total(a));
+
+const grid=document.getElementById('grid');
+DATA.forEach((d,idx)=>{
+  let rows='';
+  d.p.forEach(([type,url,n])=>{
+    const val = n!=null ? `<span class="pv">${fmt(n)}</span>` : `<span class="pv dim">ดูเพจ</span>`;
+    rows+=`<a class="pl ${type}" href="${url}" target="_blank" rel="noopener">
+      <span class="ic">${I[type]}</span><span class="pn">${PNAME[type]}</span>${val}<span class="arrow">↗</span></a>`;
+  });
+  const card=document.createElement('div');
+  card.className='card';
+  card.innerHTML=`
+    <span class="rank${idx===0?' top':''}">${idx+1}</span>
+    <div class="top">
+      <div class="ava" style="background:${d.c}">${initials(d.name).toUpperCase()}<img src="avatars/${d.handle}.jpg" alt="" onerror="this.remove()"></div>
+      <div class="who">
+        <div class="name">${d.name}</div>
+        <div class="handle">@${d.handle}</div>
+      </div>
+      <span class="cat">${d.cat}</span>
+    </div>
+    <div class="reach"><div class="big">${fmt(total(d))}</div><div class="lab">Total Reach</div></div>
+    <div class="plats">${rows}</div>`;
+  grid.appendChild(card);
+});
+
+const grand=DATA.reduce((a,d)=>a+total(d),0);
+document.getElementById('s-artists').textContent=DATA.length;
+document.getElementById('s-reach').textContent=fmt(grand)+'+';
+</script>
+</body>
+</html>
